@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-orbit-memorystore
+  labels:
+    name: cloud-orbit-memorystore
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        name: cloud-orbit-memorystore
+    spec:
+      containers:
+      - name: cloud-orbit-memorystore
+        image: "gcr.io/cloudorbit/cloud-orbit-memorystore:4"
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests: 
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        env:
+        - name: REDISHOSTIP
+          valueFrom:
+            configMapKeyRef:
+              name: ms-cm
+              key: REDISHOSTIP
+        ports:
+        - name: http
+          containerPort: 8080
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cloud-orbit-memorystore
+spec:
+  selector:
+    name: cloud-orbit-memorystore
+  ports:
+    - name: port1
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
