@@ -1,0 +1,23 @@
+{
+  "name": "cricket-api-app",
+  "description": "a tutorials to setup Google Cloud Memorystore for Nodejs on GKE",
+  "main": "index.js",
+  "version": "1.0.0",
+  "author": "Rohan Singh",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "redis": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "scripts": {
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
