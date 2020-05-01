@@ -34,7 +34,7 @@ kubectl -n memorystore apply -f gke-k8s-deployment/cloud-orbit-memorystore.yaml
 kubectl -n memorystore get pods
 
 kubectl get svc
-hit the loadbalancerIP from service
+###### hit the loadbalancerIP from service
 
 ### to get pod description
 kubectl -n memorystore describe pods [pod_name]
