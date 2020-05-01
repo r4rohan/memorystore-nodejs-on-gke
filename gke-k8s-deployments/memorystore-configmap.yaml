@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: ms-cm
 data:
-  REDISHOSTIP: 10.17.71.196
+  REDISHOSTIP: [IP of Redis]
