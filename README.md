@@ -4,9 +4,9 @@ memorystore with nodejs on gke
 ### create gke cluster
 gcloud container clusters create cloud-orbit-gke \
  --num-nodes 3 \
- —-zone us-central1-c \
- —-machine-type n1-standard-2 \
- —-scopes “https://www.googleapis.com/auth/source.read_write,cloud-platform"
+ --zone us-central1-c \
+ --machine-type n1-standard-2 \
+ --scopes “https://www.googleapis.com/auth/source.read_write,cloud-platform"
  
  ### connect gke
  gcloud container clusters get-credentials cloud-orbit-gke --zone us-central1-c --project cloudorbit
