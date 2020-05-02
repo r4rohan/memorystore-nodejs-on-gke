@@ -18,29 +18,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-
-app.get('/api/user/:uid',function(req,res){
-  const {uid} = req.params;
-
-  return redis_client.get(uid,function(err,val){
-    let value = val;
-    let isNew  = false;
-    if(!value){
-      isNew = true;
-      value = Math.floor(Math.random() * 100);
-      redis_client.setex(uid,60, value);
-    }
-
-    return res.send({
-      value,
-      isNew
-    })
-
-  });
-
-});
-
 app.get("/api/playerStats/:apikey&:pid", async (req, res) => {
   try {
     const { pid, apikey } = req.params;
@@ -64,6 +41,5 @@ app.get("/api/playerStats/:apikey&:pid", async (req, res) => {
     return res.status(500).json(error);
   }
 });
-
 
 app.listen(8080);
