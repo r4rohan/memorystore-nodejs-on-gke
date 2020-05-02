@@ -23,24 +23,19 @@ app.use(bodyParser.json());
 
 app.get("/api/user/:userid", (req, res) => {
   const {userid} = req.params;
-  const isvalue = redis_client.get(userid, function(value){
-    res.send({
-      value, 
-        from: 'from redis'
-    })
+  return redis_client.get(userid, function(err, value){
+    if (value) {
+      return res.send({
+        source: 'from redis'
+      })
+    }
+    else {
+      redis_client.setex(userid, 300, Math.floor(Math.random() * 100))
+      return res.send ({
+        source: 'not from redis'
+      })
+    }
   });
-  if (isvalue) {
-    res.send ({
-      isvalue, 
-        case: 'if'
-    })
-  }
-  else {
-    res.send ({
-      isvalue, 
-        case: 'else'
-    })
-  }
 });
 
 // app.get("/api/playerStats/:apikey&:pid", async (req, res) => {
