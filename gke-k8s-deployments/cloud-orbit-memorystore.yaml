@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: cloud-orbit-memorystore
-        image: "gcr.io/cloudorbit/cloud-orbit-memorystore:4"
+        image: "gcr.io/cloudorbit/redis:1"
         imagePullPolicy: IfNotPresent
         resources:
           requests: 
