@@ -13,11 +13,8 @@
     "express": "^4.17.1",
     "redis": "^3.0.0"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
-  },
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
