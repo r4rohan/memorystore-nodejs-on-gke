@@ -10,7 +10,7 @@ const REDISHOST = process.env.REDISHOST || 'localhost';
 const REDISPORT = process.env.REDISPORT || 6379;
 // const port = process.env.PORT || 5000;
 
-const redis_client = redis.createClient(REDISHOST, REDISPORT);
+const redis_client = redis.createClient(REDISPORT, REDISHOST);
 redis_client.on('error', (err) => console.error('ERR:REDIS:', err));
 
 //configure express server
