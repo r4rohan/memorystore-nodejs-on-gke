@@ -12,6 +12,10 @@ gcloud container clusters create cloud-orbit-gke \
  gcloud container clusters get-credentials cloud-orbit-gke --zone us-central1-c --project cloudorbit
  
  ### create a memorystore instance
+ gcloud redis instances create INSTANCE_ID --size=1 --region=us-central1 --project=SERVICE_PROJECT_ID \
+    --network=projects/cloudorbit/global/networks/default \
+    --connect-mode=private-service-access
+    
  gcloud redis instances describe cloud-orbit-redis-instance --region=us-central1-c
  
  Note: the redis instance region should be same as application region
