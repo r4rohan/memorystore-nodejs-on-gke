@@ -21,21 +21,42 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// app.get("/api/", (req, res) => res.send ('api working'))
-app.get("/api/playerStats/:apikey&:pid", async (req, res) => {
-  try {
-    const { pid, apikey } = req.params;
-    const url = `https://cricapi.com/api/playerStats?${apikey}&${pid}`
-    const playerInfo = await axios.get(url);
-
-    //get data from response
-    const playerInfoData = playerInfo.data;
-
-    return res.json(playerInfoData);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json(error);
+app.get("/api/user/:userid", (req, res) => {
+  const {userid} = req.params;
+  const isvalue = redis_client.get(userid, function(value){
+    res.send({
+      value, 
+        from: 'from redis'
+    })
+  });
+  if (isvalue) {
+    res.send ({
+      isvalue, 
+        case: 'if'
+    })
+  }
+  else {
+    res.send ({
+      isvalue, 
+        case: 'else'
+    })
   }
 });
+
+// app.get("/api/playerStats/:apikey&:pid", async (req, res) => {
+//   try {
+//     const { pid, apikey } = req.params;
+//     const url = `https://cricapi.com/api/playerStats?${apikey}&${pid}`
+//     const playerInfo = await axios.get(url);
+
+//     //get data from response
+//     const playerInfoData = playerInfo.data;
+
+//     return res.json(playerInfoData);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json(error);
+//   }
+// });
 
 app.listen(8080);
