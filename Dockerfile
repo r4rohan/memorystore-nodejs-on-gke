@@ -2,6 +2,7 @@ FROM node:12.8.0
 
 ENV REDISHOST redis
 ENV REDISPORT 6379
+ENV VERSION 4
 
 WORKDIR /usr/src/app
 COPY package*.json ./
