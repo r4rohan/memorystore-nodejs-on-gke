@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cloud-orbit-memorystore
+  name: redis
   labels:
-    name: cloud-orbit-memorystore
+    name: redis
 spec:
   replicas: 1
   strategy:
@@ -14,10 +14,10 @@ spec:
   template:
     metadata:
       labels:
-        name: cloud-orbit-memorystore
+        name: redis
     spec:
       containers:
-      - name: cloud-orbit-memorystore
+      - name: redis
         image: "gcr.io/cloudorbit/redis:1"
         imagePullPolicy: IfNotPresent
         resources:
@@ -41,10 +41,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: cloud-orbit-memorystore
+  name: redis
 spec:
   selector:
-    name: cloud-orbit-memorystore
+    name: redis
   ports:
     - name: port1
       protocol: TCP
