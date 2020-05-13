@@ -40,7 +40,8 @@ kubectl -n redis apply -f gke-k8s-deployment/cloud-orbit-memorystore.yaml
 kubectl -n redis get pods
 
 kubectl -n redis get svc
-###### hit the loadbalancerIP from service
+**hit the loadbalancerIP from service**
+curl http://[External-loadbalancer-ip]
 
 ### to get pod description
 kubectl -n redis describe pods [pod_name]
@@ -48,19 +49,18 @@ kubectl -n redis describe pods [pod_name]
 ### to get logs of pod
 kubectl -n redis logs [pod_name]
 
-
-curl http://[External-loadbalancer-ip]
-
 ### other way to check memorystore is working or not
 if the user is new then it will show true else false
-for user 1:
-http://[External-loadbalancer-ip]/api/user/1
-{"value":80,"isNew":true}
+for user 1:<br>
+http://[External-loadbalancer-ip]/api/user/1<br>
+**Output**
+{"value":80,"isNew":true}<br>
 
-if the number is not new it will give
-for user 1:
-http://[External-loadbalancer-ip]/api/user/1
-{"value":80,"isNew":false}
+if the number is not new it will give false<br>
+for user 1:<br>
+http://[External-loadbalancer-ip]/api/user/1<br>
+**Output**
+{"value":80,"isNew":false}<br>
 
 ### Pokemon API for testing
 Inspect element, hit below url and check message and time first time, for the first time the message would be API.
