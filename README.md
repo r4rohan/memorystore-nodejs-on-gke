@@ -30,7 +30,9 @@ docker push gcr.io/{PROJECT_ID}/cloud-orbit-memorystore:1
 kubectl create ns redis
 
 ### create configmap
-kubectl -n redis apply -f gke-k8s-deployment/memorystore-configmap.yaml
+export REDISHOST_IP=[host-ip-of-instance] 
+kubectl -n redis create configmap ms-cm --from-literal=REDISHOST=${REDISHOST_IP}
+kubectl -n redis get configmaps -o yaml
 
 ### create pod deployment
 kubectl -n redis apply -f gke-k8s-deployment/cloud-orbit-memorystore.yaml
@@ -45,3 +47,23 @@ kubectl -n redis describe pods [pod_name]
 
 ### to get logs of pod
 kubectl -n redis logs [pod_name]
+
+
+curl http://[External-loadbalancer-ip]
+
+### other way to check memorystore is working or not
+if the user is new then it will show true else false
+for user 1:
+http://[External-loadbalancer-ip]/api/user/1
+{"value":80,"isNew":true}
+
+if the number is not new it will give
+for user 1:
+http://[External-loadbalancer-ip]/api/user/1
+{"value":80,"isNew":false}
+
+### Pokemon API for testing
+Inspect element, hit below url and check message and time first time, for the first time the message would be API.
+http://[External-loadbalancer-ip]/type/1/
+
+again hit and check message and time second time, for the second time the message would be REDIS and finish time is much lesser than earlier one.
