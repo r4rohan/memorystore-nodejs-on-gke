@@ -50,14 +50,14 @@ kubectl -n redis describe pods [pod_name]
 kubectl -n redis logs [pod_name]
 
 ### other way to check memorystore is working or not
-if the user is new then it will show true else false
-for user 1:<br>
+if the user is new then it will show true else false<br>
+_for user 1:_<br>
 http://[External-loadbalancer-ip]/api/user/1<br><br>
 **Output**<br>
 {"value":80,"isNew":true}<br>
 
 if the number is not new it will give false<br>
-for user 1:<br>
+_for user 1:_<br>
 http://[External-loadbalancer-ip]/api/user/1<br><br>
 **Output**<br>
 {"value":80,"isNew":false}<br>
